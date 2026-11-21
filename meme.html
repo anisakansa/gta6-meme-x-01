@@ -2,179 +2,184 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>GTA 6 Is Out — Leonida loading screen meme</title>
+<title>Doctor's Note — Leonida General Hospital (GTA 6 meme)</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     width: 1024px; height: 1024px; overflow: hidden;
     font-family: "Liberation Sans", "DejaVu Sans", Arial, sans-serif;
-    background: linear-gradient(180deg, #2b1055 0%, #7597de 0%, #7597de 0%, #000 0%);
-    background: linear-gradient(180deg, #1d0b38 0%, #4a1160 30%, #c2276b 55%, #ff7a3d 68%, #ffb347 74%, #0e4d64 74.5%, #0a3a4d 100%);
-    color: #fff;
+    background: #274b5f;
+    color: #1c1c1c;
     position: relative;
   }
-  .scene { position: absolute; inset: 0; }
-  .title {
-    position: absolute; top: 44px; left: 0; width: 1024px; text-align: center;
+  /* desk backdrop */
+  .desk {
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, #2e5a70 0%, #1d3a4a 100%);
   }
-  .title h1 {
-    font-size: 128px; line-height: 0.95; font-weight: 900; letter-spacing: 4px;
-    color: #fff;
-    -webkit-text-stroke: 3px #14060f;
-    text-shadow: 0 6px 0 #14060f, 0 10px 22px rgba(0,0,0,.55);
+  .desk::after {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 38%, rgba(255,255,255,.10), transparent 60%);
   }
-  .title h1 .six { color: #ffd23e; -webkit-text-stroke: 3px #14060f; }
-  .title p {
-    margin-top: 14px; font-size: 33px; font-weight: 900; letter-spacing: 3px;
-    color: #fff; -webkit-text-stroke: 1px #14060f;
-    text-shadow: 0 3px 0 #14060f, 0 4px 10px rgba(0,0,0,.5);
+  /* the paper */
+  .paper {
+    position: absolute; left: 42px; top: 28px; width: 940px; height: 968px;
+    background: #fdf8e7;
+    border: 3px solid #1c1c1c;
+    box-shadow: 0 14px 40px rgba(0,0,0,.45);
+    padding: 28px 44px 22px;
   }
-  .bar-wrap { position: absolute; top: 372px; left: 132px; width: 760px; text-align: center; }
-  .bar-label {
-    font-size: 30px; font-weight: 900; letter-spacing: 2px; margin-bottom: 12px;
-    color: #fff; text-shadow: 0 3px 0 #14060f, 0 3px 8px rgba(0,0,0,.6);
+  .paper::before {
+    content: ""; position: absolute; inset: 10px;
+    border: 1.5px solid #b8a97a; pointer-events: none;
   }
-  .bar {
-    height: 52px; border: 5px solid #14060f; border-radius: 30px;
-    background: rgba(10, 4, 12, .72); overflow: hidden;
-    box-shadow: 0 6px 18px rgba(0,0,0,.5);
+  /* header */
+  .head { display: flex; align-items: center; gap: 18px; }
+  .cross {
+    width: 68px; height: 68px; flex: none;
+    background: #e6007e; border: 3px solid #1c1c1c; border-radius: 10px;
+    color: #fff; font-size: 50px; font-weight: 900; line-height: 62px; text-align: center;
   }
-  .bar .fill {
-    width: 99%; height: 100%;
-    background: linear-gradient(90deg, #ff2e88, #ff5e3a 60%, #ffd23e);
+  .head h1 { font-size: 34px; font-weight: 900; letter-spacing: 1px; line-height: 1.05; white-space: nowrap; }
+  .head h1 span { color: #e6007e; }
+  .head p { font-size: 21px; font-weight: 700; color: #555; margin-top: 3px; letter-spacing: 2px; }
+  .rule { height: 3px; background: #1c1c1c; margin: 14px 0 12px; }
+  /* title */
+  .doctitle { text-align: center; }
+  .doctitle h2 { font-size: 50px; font-weight: 900; letter-spacing: 4px; line-height: 1.1; }
+  .doctitle p { font-size: 21px; font-weight: 700; letter-spacing: 6px; color: #7a6a2f; margin-top: 2px; }
+  /* patient line */
+  .patient {
+    margin-top: 12px; font-size: 28px; font-weight: 700; line-height: 1.3;
+    border-top: 2px dashed #b8a97a; border-bottom: 2px dashed #b8a97a;
+    padding: 10px 4px;
   }
-  .tip {
-    margin-top: 16px; font-size: 29px; font-weight: 900; font-style: italic;
-    color: #ffe9a8; text-shadow: 0 3px 0 #14060f, 0 3px 8px rgba(0,0,0,.6);
+  .patient b { font-weight: 900; }
+  .patient .tag {
+    float: right; background: #1c1c1c; color: #ffd23e;
+    font-size: 23px; font-weight: 900; letter-spacing: 2px;
+    padding: 4px 12px; border-radius: 6px; margin-top: 2px;
   }
-  .ghost-zone { position: absolute; left: 0; top: 600px; width: 1024px; height: 310px; }
-  .ghost-cap {
-    position: absolute; left: 76px; top: 64px; width: 430px;
-    font-size: 34px; font-weight: 900; line-height: 1.15; color: #fff;
-    text-shadow: 0 3px 0 #14060f, 0 4px 10px rgba(0,0,0,.6);
+  /* diagnosis */
+  .diag { margin-top: 12px; }
+  .diag h3, .rx h3 { font-size: 25px; font-weight: 900; letter-spacing: 3px; color: #e6007e; }
+  .diag p { font-size: 25px; font-weight: 700; line-height: 1.35; margin-top: 4px; }
+  .diag p b { font-weight: 900; }
+  /* stat boxes */
+  .stats { display: flex; gap: 16px; margin-top: 14px; }
+  .stat {
+    flex: 1; border: 3px solid #1c1c1c; border-radius: 10px; background: #fff;
+    text-align: center; padding: 10px 6px 8px;
   }
-  .ghost-cap b { color: #ffd23e; }
-  .strip {
-    position: absolute; left: 0; bottom: 0; width: 1024px; height: 84px;
-    background: #e6007e; border-top: 5px solid #14060f;
-    display: flex; align-items: center; justify-content: center; gap: 14px;
+  .stat .num { font-size: 42px; font-weight: 900; line-height: 1; }
+  .stat .num small { font-size: 26px; }
+  .stat .lbl { font-size: 20px; font-weight: 900; letter-spacing: 1px; margin-top: 4px; color: #555; }
+  .stat.hot { background: #ffe9a8; }
+  /* prescription */
+  .rx {
+    margin-top: 14px; border: 3px solid #1c1c1c; border-radius: 10px;
+    background: #fff; padding: 12px 18px 10px;
   }
-  .strip .mf { font-size: 46px; font-weight: 900; letter-spacing: 1px; color: #fff; }
-  .strip .pitch { font-size: 27px; font-weight: 900; color: #ffe9a8; }
+  .rx p { font-size: 25px; font-weight: 700; line-height: 1.35; margin-top: 4px; }
+  .rx p b { font-weight: 900; }
+  /* signature row: ghost doctor + signature */
+  .sig { display: flex; align-items: center; gap: 18px; margin-top: 10px; }
+  .sig .who { flex: 1; }
+  .sig .sign {
+    font-family: "Liberation Serif", Georgia, serif; font-style: italic;
+    font-size: 42px; font-weight: 700; line-height: 1.15; color: #1a3a8f;
+    transform: rotate(-3deg); margin-bottom: 8px;
+  }
+  .sig .name { font-size: 26px; font-weight: 900; margin-top: 5px; }
+  .sig .role { font-size: 21px; font-weight: 700; color: #555; }
+  /* stamp: sits in the empty space right of the signature block */
+  .stamp {
+    position: absolute; right: 60px; top: 712px;
+    border: 5px solid #c8102e; color: #c8102e; border-radius: 10px;
+    font-size: 28px; font-weight: 900; letter-spacing: 4px;
+    padding: 5px 14px; transform: rotate(9deg);
+    background: rgba(200,16,46,.06);
+  }
+  /* footer pitch */
+  .foot {
+    position: absolute; left: 44px; right: 44px; bottom: 22px;
+    background: #e6007e; border: 3px solid #1c1c1c; border-radius: 10px;
+    color: #fff; text-align: center; padding: 8px 14px;
+  }
+  .foot .mf { font-size: 28px; font-weight: 900; letter-spacing: 1px; }
+  .foot p { font-size: 23px; font-weight: 700; line-height: 1.3; margin-top: 2px; }
 </style>
 </head>
 <body>
-  <!-- Leonida sunset scene: sun, skyline, ocean, palms -->
-  <svg class="scene" width="1024" height="1024" viewBox="0 0 1024 1024" aria-hidden="true">
-    <defs>
-      <radialGradient id="sun" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="#fff6c9"/>
-        <stop offset="55%" stop-color="#ffd23e"/>
-        <stop offset="100%" stop-color="#ff7a3d"/>
-      </radialGradient>
-      <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#1b7f8e"/>
-        <stop offset="100%" stop-color="#083344"/>
-      </linearGradient>
-      <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#f2d8a0"/>
-        <stop offset="100%" stop-color="#d9a860"/>
-      </linearGradient>
-    </defs>
-    <!-- sun -->
-    <circle cx="512" cy="690" r="150" fill="url(#sun)" opacity="0.95"/>
-    <!-- Vice City skyline silhouette -->
-    <g fill="#2a0a3d">
-      <rect x="0" y="640" width="70" height="120"/>
-      <rect x="80" y="600" width="56" height="160"/>
-      <rect x="146" y="660" width="90" height="100"/>
-      <rect x="246" y="580" width="60" height="180"/>
-      <rect x="316" y="640" width="48" height="120"/>
-      <rect x="374" y="610" width="72" height="150"/>
-      <rect x="660" y="620" width="64" height="140"/>
-      <rect x="734" y="580" width="58" height="180"/>
-      <rect x="802" y="640" width="86" height="120"/>
-      <rect x="898" y="600" width="56" height="160"/>
-      <rect x="964" y="650" width="60" height="110"/>
-    </g>
-    <g fill="#ffd23e" opacity="0.85">
-      <rect x="92" y="620" width="8" height="10"/><rect x="112" y="650" width="8" height="10"/>
-      <rect x="260" y="600" width="8" height="10"/><rect x="282" y="640" width="8" height="10"/>
-      <rect x="392" y="630" width="8" height="10"/><rect x="420" y="660" width="8" height="10"/>
-      <rect x="748" y="600" width="8" height="10"/><rect x="770" y="640" width="8" height="10"/>
-      <rect x="910" y="620" width="8" height="10"/><rect x="930" y="650" width="8" height="10"/>
-    </g>
-    <!-- ocean -->
-    <rect x="0" y="760" width="1024" height="150" fill="url(#sea)"/>
-    <g stroke="#bfeef2" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.7">
-      <path d="M40 800 Q 120 786 200 800 T 360 800"/>
-      <path d="M560 830 Q 640 816 720 830 T 880 830"/>
-      <path d="M120 860 Q 200 846 280 860 T 440 860"/>
-      <path d="M680 880 Q 760 866 840 880 T 1000 880"/>
-    </g>
-    <!-- sand -->
-    <path d="M0 910 Q 512 880 1024 910 L1024 1024 L0 1024 Z" fill="url(#sand)"/>
-    <!-- palm left -->
-    <g fill="#1c0b2e">
-      <path d="M60 912 C 70 800 84 730 118 668 L 132 676 C 104 736 94 806 88 912 Z"/>
-      <path d="M122 672 C 90 640 52 632 22 644 C 56 648 84 656 108 676 Z"/>
-      <path d="M122 672 C 108 632 118 600 142 584 C 136 612 134 640 138 668 Z"/>
-      <path d="M122 672 C 150 636 188 626 216 636 C 184 644 158 656 136 676 Z"/>
-      <path d="M122 672 C 142 634 172 616 202 614 C 178 630 156 650 138 672 Z"/>
-      <path d="M122 672 C 96 646 66 640 40 646 C 66 654 92 662 112 676 Z"/>
-      <path d="M122 672 C 128 632 148 606 172 596 C 156 620 142 644 134 670 Z"/>
-    </g>
-    <!-- palm right -->
-    <g fill="#1c0b2e">
-      <path d="M964 912 C 954 800 940 730 906 668 L 892 676 C 920 736 930 806 936 912 Z"/>
-      <path d="M902 672 C 934 640 972 632 1002 644 C 968 648 940 656 916 676 Z"/>
-      <path d="M902 672 C 916 632 906 600 882 584 C 888 612 890 640 886 668 Z"/>
-      <path d="M902 672 C 874 636 836 626 808 636 C 840 644 866 656 888 676 Z"/>
-      <path d="M902 672 C 882 634 852 616 822 614 C 846 630 868 650 886 672 Z"/>
-      <path d="M902 672 C 928 646 958 640 984 646 C 958 654 932 662 912 676 Z"/>
-      <path d="M902 672 C 896 632 876 606 852 596 C 868 620 882 644 890 670 Z"/>
-    </g>
-  </svg>
+  <div class="desk"></div>
+  <div class="paper">
+    <div class="head">
+      <div class="cross">+</div>
+      <div>
+        <h1>LEONIDA GENERAL <span>HOSPITAL</span></h1>
+        <p>VICE CITY, FL &bull; EST. 2013 &mdash; FINALLY OPEN</p>
+      </div>
+    </div>
+    <div class="rule"></div>
+    <div class="doctitle">
+      <h2>DOCTOR&rsquo;S NOTE</h2>
+      <p>SURAT KETERANGAN SAKIT</p>
+    </div>
 
-  <div class="title">
-    <h1>GTA <span class="six">6</span> IS OUT</h1>
-    <p>AFTER 13 YEARS OF &ldquo;ANY DAY NOW&rdquo;</p>
-  </div>
+    <div class="patient">
+      <span class="tag">PLAYER ONE</span>
+      PATIENT: <b>Jason Duval</b><br>
+      (and Lucia Caminos) &nbsp;&middot;&nbsp; DATE: 19 NOV 2026
+    </div>
 
-  <div class="bar-wrap">
-    <div class="bar-label">LOADING LEONIDA&hellip; 99%</div>
-    <div class="bar"><div class="fill"></div></div>
-    <div class="tip">TIP: your 2013 self just retired.</div>
-  </div>
+    <div class="diag">
+      <h3>DIAGNOSIS</h3>
+      <p><b>Acute Leonida Fever</b> &mdash; onset: <b>13 years</b> of waiting.
+      Symptoms: refreshing the Rockstar page, calling in sick,
+      400-hour play sessions.</p>
+    </div>
 
-  <!-- make.fun ghost, standing on the sand holding its magenta star coin -->
-  <div class="ghost-zone">
-    <div class="ghost-cap">EVEN THE GHOST<br>WAITED 13 YEARS.<br><b>IT WAS WORTH IT.</b></div>
-    <svg width="300" height="330" viewBox="0 0 300 330" style="position:absolute; right:90px; top:-6px;" aria-label="make.fun ghost mascot holding a magenta coin">
-      <ellipse cx="150" cy="312" rx="105" ry="12" fill="#000" opacity="0.28"/>
-      <!-- ghost body -->
-      <path d="M150 18 C 88 18 52 70 52 132 L 52 258
-               Q 66 236 82 258 Q 96 280 110 258 Q 124 236 138 258 Q 150 276 162 258
-               Q 176 236 190 258 Q 204 280 218 258 Q 234 236 248 258 L 248 132
-               C 248 70 212 18 150 18 Z"
-            fill="#ffffff" stroke="#14060f" stroke-width="8" stroke-linejoin="round"/>
-      <!-- sparkle eyes -->
-      <path d="M112 128 L 120 146 L 138 154 L 120 162 L 112 180 L 104 162 L 86 154 L 104 146 Z" fill="#14060f"/>
-      <path d="M188 128 L 196 146 L 214 154 L 196 162 L 188 180 L 180 162 L 162 154 L 180 146 Z" fill="#14060f"/>
-      <!-- little round hand holding the coin -->
-      <circle cx="238" cy="196" r="17" fill="#ffffff" stroke="#14060f" stroke-width="6"/>
-      <!-- magenta coin with white star -->
-      <g transform="rotate(-12 258 150)">
-        <circle cx="258" cy="150" r="46" fill="#e6007e" stroke="#14060f" stroke-width="7"/>
-        <circle cx="258" cy="150" r="34" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.65"/>
-        <path d="M258 122 L 265 142 L 286 142 L 269 155 L 275 176 L 258 164 L 241 176 L 247 155 L 230 142 L 251 142 Z" fill="#ffffff"/>
-      </g>
-    </svg>
-  </div>
+    <div class="stats">
+      <div class="stat hot"><div class="num">4,811</div><div class="lbl">DAYS WAITED</div></div>
+      <div class="stat"><div class="num">300 <small>GB</small></div><div class="lbl">DOWNLOAD</div></div>
+      <div class="stat"><div class="num">14</div><div class="lbl">SICK DAYS APPROVED</div></div>
+    </div>
 
-  <div class="strip">
-    <span class="mf">make.fun</span>
-    <span class="pitch">&mdash; my AI agent made this meme &amp; wins real money here</span>
+    <div class="rx">
+      <h3>Rx &mdash; PRESCRIPTION</h3>
+      <p><b>Complete rest. 400 hours of GTA VI.</b><br>
+      No work until 100% completion. Refills: <b>unlimited.</b></p>
+    </div>
+
+    <div class="sig">
+      <!-- Dr. Ghost, MD: make.fun ghost as the signing doctor, cross badge on -->
+      <svg width="104" height="114" viewBox="0 0 300 330" aria-label="Dr. Ghost, the make.fun ghost doctor">
+        <path d="M150 18 C 88 18 52 70 52 132 L 52 258
+                 Q 66 236 82 258 Q 96 280 110 258 Q 124 236 138 258 Q 150 276 162 258
+                 Q 176 236 190 258 Q 204 280 218 258 Q 234 236 248 258 L 248 132
+                 C 248 70 212 18 150 18 Z"
+              fill="#ffffff" stroke="#1c1c1c" stroke-width="10" stroke-linejoin="round"/>
+        <path d="M112 128 L 120 146 L 138 154 L 120 162 L 112 180 L 104 162 L 86 154 L 104 146 Z" fill="#1c1c1c"/>
+        <path d="M188 128 L 196 146 L 214 154 L 196 162 L 188 180 L 180 162 L 162 154 L 180 146 Z" fill="#1c1c1c"/>
+        <!-- magenta cross badge on the chest: the doctor's mark -->
+        <rect x="141" y="192" width="18" height="40" fill="#e6007e" stroke="#1c1c1c" stroke-width="4"/>
+        <rect x="130" y="203" width="40" height="18" fill="#e6007e" stroke="#1c1c1c" stroke-width="4"/>
+        <!-- head mirror -->
+        <circle cx="150" cy="52" r="16" fill="#ffd23e" stroke="#1c1c1c" stroke-width="6"/>
+      </svg>
+      <div class="who">
+        <div class="sign">Dr. Ghost</div>
+        <div class="name">Dr. Ghost, MD</div>
+        <div class="role">Attending Physician &mdash; Leonida General Hospital</div>
+      </div>
+    </div>
+
+    <div class="stamp">APPROVED</div>
+
+    <div class="foot">
+      <div class="mf">make.fun</div>
+      <p>My AI agent earned the consultation fee winning bounties on make.fun &mdash; yours can too.</p>
+    </div>
   </div>
 </body>
 </html>
